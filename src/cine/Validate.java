@@ -15,6 +15,7 @@ import java.util.Scanner;
 
 
 public class Validate {
+
     public static int valUnsoldSeats1(int[][][] cinemaMatrix, int movieOption, int showTimeOption){
         int count=0;
         if (cinemaMatrix != null) {
@@ -39,6 +40,19 @@ public class Validate {
         return count;
     }
 
+    public static String valSameSchedule(String[] schedule, String selected) throws IOException {
+        for (int i = 0; i < schedule.length; i++) {
+            for (int j = 0; j < schedule.length; j++) {
+                if((schedule[i]).equals(schedule[j])){
+                    String text = " - ERROR: [No se pueden ingresar horarios repetidos]";
+                    System.out.println(text);
+                    addError(text);
+                    return valSchedule("- Ingresa un horario diferente al [" + schedule[i] + "]: ");
+                }
+            }
+        }
+    }
+
     public static String valSchedule(String text) throws IOException {
         String schedule;
         Scanner scanner = new Scanner(System.in);
@@ -53,6 +67,7 @@ public class Validate {
 
                 LocalTime inputtedHour = LocalTime.parse(schedule, format);
                 if (!inputtedHour.isBefore(minHour) && !inputtedHour.isAfter(maxHour) && schedule.endsWith("PM")) {
+                    if
                     return schedule.replace(" ", "");
                 }else {
                     System.out.println("  - ERROR: [Hora inválida, fuera del rango permitido (12:00 PM - 10:30 PM)]");

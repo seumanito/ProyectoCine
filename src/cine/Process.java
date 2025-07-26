@@ -61,6 +61,7 @@ public class Process {
             for (int i = 0; i < movieSchedule.length; i++) {
                 text = "- Ingresa cual es el horario[" + (i+1) + "] disponible el dia de hoy. En formato (hh:mm PM): ";
                 movieSchedule[i] = Validate.valSchedule(text);
+                
             }
         }
     }

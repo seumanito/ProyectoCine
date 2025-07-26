@@ -1,2 +1,4 @@
 
 ErrorSystemValues_2025-07-19 14-02-00_Serial16 [No se pueden usar caracteres java.util.InputMismatchException/null/null]
+ErrorSystemValues_2025-07-26 11-03-22_Serial77 [No se pueden usar caracteres java.util.InputMismatchException/null/null]
+ErrorSystemValues_2025-07-26 11-04-00_Serial70 [Formato de horas inválido java.time.format.DateTimeParseException: Text '�' could not be parsed at index 0/Text '�' could not be parsed at index 0/Text '�' could not be parsed at index 0]
