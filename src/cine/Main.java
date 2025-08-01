@@ -1,5 +1,8 @@
 package cine;
 
+import cine.process.ProcessMain;
+import cine.process.processMain;
+import cine.validateItem.Validate;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -15,7 +18,11 @@ public class Main {
         String[] movieTimes;
         int showTimesQuant, seatsQuant;
         int moviesQuant = 7;
-
+        
+        /*Se valida si el archivo de busqueda existe para iniciar el metodo de busqueda
+        if (Validate.useArchive(text, text, bool)) {
+            
+        }*/
 
         //Detectamos automaticamente donde se encuentra la ruta donde queremos crear el archivo
         String router = Paths.get("").toRealPath()+"/src/cine";
@@ -36,18 +43,13 @@ public class Main {
         losses = new int[moviesQuant];
         movieTimes = new String[showTimesQuant];
 
-
         // Inicializamos los arreglos
-        Process.iniMatrix(cinema);
-        Process.iniArray(revenue);
-        Process.iniArray(losses);
-        Process.iniArray(movieTimes);
+        processMain.processIni(revenue, cinema, losses, movieTimes);
+        
 
         // Desarrollo
-        Process.dataEntry(movieTimes);
-        Process.purchaseProcessStart(cinema, movieTimes);
-        Process.calcRevenueLosses(cinema, revenue, losses);
-        Process.showCase(cinema, revenue, losses, router);
+        processMain.proccessData(movieTimes, cinema, revenue, losses, router);
+        
 
         // Eliminamos las instancias
         cinema = null;

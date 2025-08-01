@@ -1,4 +1,4 @@
-package cine;
+package cine.validateItem;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -6,8 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.InputMismatchException;
 import java.util.Locale;
@@ -163,4 +163,23 @@ public class Validate {
             scanner.nextLine();
         }
     }
+    /* 
+    public static boolean archiveExists(String text){
+        String route= Paths.get("").toRealPath().toString()+"/src/cine/" + text + ".txt";
+    }
+    
+    
+    Valida la entrada del tipo de busqueda
+    public static String valText(String text){
+        String name="";
+        Scanner scanner = new Scanner(System.in);
+        while (true) { 
+            System.out.println(text);
+            name = scanner.nextLine().trim();
+            if (name.equals("Cedula")) {
+                
+            }
+
+        }   
+    } */
 }
