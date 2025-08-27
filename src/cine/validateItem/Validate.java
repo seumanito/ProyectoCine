@@ -89,6 +89,29 @@ public class Validate {
         }
     }
 
+    public static boolean valString(String text){
+        String limit="0123456789!#$%/()=?¡¨*[]_";
+        for (int i = 0; i < text.length(); i++) {
+            for (int j = 0; j < limit.length(); j++) {
+                if (text.charAt(i)==limit.charAt(j)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static String valString(String option, String text){
+
+        if (!valString(option)) {
+            System.out.println("ERROR - [No se permiten caracteres especiales o numeros]");
+            System.out.println(text);
+            return valString(option, text);
+        }
+        return option;
+    }
+
+
     public static int valInt(String text, int maxValue) throws IOException {
         int size;
         Scanner scanner = new Scanner(System.in);

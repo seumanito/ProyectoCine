@@ -1,8 +1,10 @@
 package cine;
 
-import cine.process.ProcessMain;
+import cine.objects.ArchiveUtil;
 import cine.process.processMain;
-import cine.validateItem.Validate;
+import cine.validateItem.*;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Scanner;
@@ -10,8 +12,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
-        String text;
+        String text="";
         String archiveName = "InformeVentasCine";
+        ArchiveUtil archive=null;
         int[][][] cinema;
         int[][] revenue;
         int[] losses;
@@ -28,6 +31,30 @@ public class Main {
         String router = Paths.get("").toRealPath()+"/src/cine";
         router  = Validate.utilDirectory(router)+"/"+Validate.nameArchiveGenerate(archiveName)+".txt";
 
+        String routerArchive= Paths.get("").toRealPath()+"/src/cine/objects/";
+        routerArchive  = Validate.utilDirectory(routerArchive);
+
+        try {
+            archive = new ArchiveUtil(routerArchive);
+        } catch (FileNotFoundException | IllegalArgumentException e) {
+            System.out.println("-ERROR-INSTANCIA-: ["+e.getMessage()+"]");
+        }
+
+
+
+        if (archive.directoriesExist()) {
+            text="¿Desea realizar una busqueda o realizar una compra? \nBusqueda \nCompra";
+            System.out.println(text);
+
+            text=(Objects.equals(ValidateOBJ.valOption(text,scanner.nextLine(),scanner),"busqueda"))
+            ?"¿Por cual metodo desea buscar?" :null;
+        }
+
+        if (text!=null) {
+            System.out.println(text);
+            String option=ValidateOBJ.valOption(text, scanner.nextLine(),scanner);
+            
+        }
 
         // Pedimos los datos para la inicializacion
         text = "- Ingrese cuantos HORARIOS estaran disponibles por pelicula: ";
