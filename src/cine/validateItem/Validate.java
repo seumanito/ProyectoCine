@@ -100,6 +100,7 @@ public class Validate {
         }
         return true;
     }
+    
 
     public static String valString(String option, String text){
 
@@ -141,23 +142,6 @@ public class Validate {
         useArchive(nameArchiveGenerate("ErrorSystemValues")+" ["+error+"]", router, true);
     }
 
-    public static String utilDirectory(String router) throws IOException {
-        String txt;
-
-        if (router.trim().isEmpty()) {
-            txt = "MANAGE-ERROR: Ruta no existe.";
-            addError(txt);
-            return null;
-        }
-        File directories = new File(router);
-        if (!directories.exists()) {
-            txt = "MANAGE-ERROR: El directorio a guardar no existe. ";
-            addError(txt);
-            return null;
-        }
-        return router;
-    }
-
     public static String nameArchiveGenerate(String name) {
         LocalDateTime actualDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss");
@@ -165,44 +149,4 @@ public class Validate {
         return name+"_"+actualDateTime.format(formatter)+"_"+"Serial"+rand;
     }
 
-    public static void useArchive(String content, String route, boolean bool) throws IOException{
-        Scanner scanner = new Scanner(System.in);
-        String txt;
-        if (route.trim().isEmpty()) {
-            txt = "MANAGE-ERROR: El directorio a guardar no existe. ";
-            addError(txt);
-            return;
-        }
-        try (BufferedWriter addArchive = new BufferedWriter(new FileWriter(route, true))) {
-            if (bool){
-                addArchive.newLine();
-            }
-            if (content == null) {
-                throw new IllegalArgumentException(" El nombre del archivo es requerido. ");
-            }
-            addArchive.write(content);
-        } catch (IOException e) {
-            addError(e+"/"+e.getMessage()+"/"+e.getLocalizedMessage());
-            scanner.nextLine();
-        }
-    }
-    /* 
-    public static boolean archiveExists(String text){
-        String route= Paths.get("").toRealPath().toString()+"/src/cine/" + text + ".txt";
-    }
-    
-    
-    Valida la entrada del tipo de busqueda
-    public static String valText(String text){
-        String name="";
-        Scanner scanner = new Scanner(System.in);
-        while (true) { 
-            System.out.println(text);
-            name = scanner.nextLine().trim();
-            if (name.equals("Cedula")) {
-                
-            }
-
-        }   
-    } */
 }

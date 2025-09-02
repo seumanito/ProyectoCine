@@ -1,61 +1,49 @@
 package cine;
 
+import cine.helpers.*;
 import cine.objects.ArchiveUtil;
 import cine.process.processMain;
 import cine.validateItem.*;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         String text="";
         String archiveName = "InformeVentasCine";
-        ArchiveUtil archive=null;
+        ArchiveUtil storage=null;
         int[][][] cinema;
         int[][] revenue;
         int[] losses;
         String[] movieTimes;
         int showTimesQuant, seatsQuant;
         int moviesQuant = 7;
-        
-        /*Se valida si el archivo de busqueda existe para iniciar el metodo de busqueda
-        if (Validate.useArchive(text, text, bool)) {
-            
-        }*/
 
-        //Detectamos automaticamente donde se encuentra la ruta donde queremos crear el archivo
-        String router = Paths.get("").toRealPath()+"/src/cine";
-        router  = Validate.utilDirectory(router)+"/"+Validate.nameArchiveGenerate(archiveName)+".txt";
-
-        String routerArchive= Paths.get("").toRealPath()+"/src/cine/objects/";
-        routerArchive  = Validate.utilDirectory(routerArchive);
+        String router=Paths.get("").toRealPath().toString()+"src/cine/storage";
 
         try {
-            archive = new ArchiveUtil(routerArchive);
+            storage= new ArchiveUtil(router);
         } catch (FileNotFoundException | IllegalArgumentException e) {
-            System.out.println("-ERROR-INSTANCIA-: ["+e.getMessage()+"]");
+            System.out.println("-ERROR-STORAGE-: ["+e.getMessage()+"]");
         }
 
-
-
-        if (archive.directoriesExist()) {
+        if (storage.directoriesExist()) {
             text="¿Desea realizar una busqueda o realizar una compra? \nBusqueda \nCompra";
             System.out.println(text);
 
             text=(Objects.equals(ValidateOBJ.valOption(text,scanner.nextLine(),scanner),"busqueda"))
-            ?"¿Por cual metodo desea buscar?" :null;
+            ?"¿Por cual metodo desea buscar? \n-Nombre \n-Cedula \n-Fecha" :null;
         }
 
         if (text!=null) {
             System.out.println(text);
             String option=ValidateOBJ.valOption(text, scanner.nextLine(),scanner);
-            
+            consultMain.consultDataMain(option.toLowerCase(), storage);
         }
-
+        
         // Pedimos los datos para la inicializacion
         text = "- Ingrese cuantos HORARIOS estaran disponibles por pelicula: ";
         showTimesQuant = Validate.valInt(text, 6, 4);
