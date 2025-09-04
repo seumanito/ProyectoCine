@@ -83,8 +83,8 @@ public class consultData {
             return null;
         }
 
-        String[] value=archive.nextLine().split("/");
-        int i = IndexLine(value,data);
+        String[] names=archive.nextLine().split("/");
+        int i = IndexLine(names,data);
 
         if(i>=0){
             return new int[]{index[0],i};
@@ -92,14 +92,57 @@ public class consultData {
         return consultIndexByData(archive,data,new int[]{index[0]=index[0]+1,i});
     }
 
-    public static int IndexLine(String[] value,String data){
+    public static int IndexLine(String[] names,String data){
         
-        for (int i = 0; i < value.length; i++) {
-            if(value[i].equals(data)){
+        for (int i = 0; i < names.length; i++) {
+            if(names[i].equals(data)){
                 return i;
             }
         }
-        return +1;
+        return -1;
     }
+
+    public static String consultDataByIndex(Scanner archive,int[] index, int rowFound){
+
+        if (!archive.hasNextLine()) {
+            return null;
+        }
+
+        String[] bill=archive.nextLine().split("/");
+
+        if (index[0]==rowFound) {
+            return dataIndex(bill,index[1]);
+            
+        }
+        return consultDataByIndex(archive,index,rowFound+1);
+    }
+
+    public static String dataIndex(String[]bill,int colum){
+
+        for (int i = 0; i < bill.length; i++) {
+            if (i==colum) {
+                return bill[i];
+            }
+        }
+        return null;
+    }
+    
+    public static void showCaseName(String data,Name userDefault,Bill billDefault){
+        try {
+            if (userDefault!=null) {
+                System.out.println("\n------------------------------");
+                System.out.println("\n         Datos Solicitados \n Serial Archivo="+userDefault.getSerial()+"\n Nombre Cliente="+data+"\n Valor Cuenta="+billDefault.getBill());
+                System.out.println("\n------------------------------");
+            }else{
+                System.out.println("\n------------------------------");
+                System.out.println("\n         Datos Solicitados          ");
+                System.out.println("\nNombre Cliente="+data+" No se encontraron datos");
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error ["+e.getMessage()+"]");
+        }
+
+    }
+
 
 }

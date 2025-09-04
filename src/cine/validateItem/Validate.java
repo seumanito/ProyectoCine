@@ -103,10 +103,12 @@ public class Validate {
     
 
     public static String valString(String option, String text){
-
+        Scanner scanner=new Scanner(System.in);
+        System.out.println(text);
+        option=scanner.nextLine().trim();
         if (!valString(option)) {
             System.out.println("ERROR - [No se permiten caracteres especiales o numeros]");
-            System.out.println(text);
+            
             return valString(option, text);
         }
         return option;

@@ -2,8 +2,6 @@ package cine.process;
 
 import cine.validateItem.Validate;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class Process {
     public static void iniMatrix(int[][][] cinema) {
@@ -65,13 +63,27 @@ public class Process {
             }
         }
     }
+    
+    public static void quantProcess(String[]usersQuant,int[][][] cinemaMatrix, String[] movieSchedule) throws IOException {
+        String text,name="";
+        int id;
+
+        for (int i = 0; i < usersQuant.length; i++) {
+            text = "- Ingrese el nombre del usuario [" + (i + 1) + "] en la fila: ";
+            name = Validate.valString(name,text);
+            text="- Ingrese la cedula del usuario [" + (i + 1) + "] en la fila: ";
+            id= Validate.valInt(text,35000000,400000);
+            purchaseProcessStart(cinemaMatrix,movieSchedule);
+        }
+
+    }
 
 
     public static void purchaseProcessStart(int[][][] cinemaMatrix, String[] movieSchedule) throws IOException {
         int band, x;
         int movieOption;
         String text, text2;
-
+        
         if (cinemaMatrix != null && movieSchedule != null) {
             while (true) {
                 text = "\n- Ingrese [0] para iniciar el proceso de compra del siguiente cliente en fila / Ingrese [1] si no hay mas clientes: ";
@@ -168,7 +180,7 @@ public class Process {
         }
     }
 
-    public static void showCase(int[][][] cinemaMatrix, int[][] revenue, int[] losses, String route) throws IOException {
+   /* public static void showCase(int[][][] cinemaMatrix, int[][] revenue, int[] losses, String route) throws IOException {
         String text;
         int band, sum;
         double porcentaje;
@@ -218,5 +230,5 @@ public class Process {
             }
         }
         System.out.println("  >>>> FIN DEL PROGRAMA: Puede ver su informe del dia  <<<<");
-    }
+    }*/
 }

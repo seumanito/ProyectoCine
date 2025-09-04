@@ -19,7 +19,8 @@ public class Main {
         int[][] revenue;
         int[] losses;
         String[] movieTimes;
-        int showTimesQuant, seatsQuant;
+        String[] usersRow;
+        int showTimesQuant, seatsQuant, usersQuant;
         int moviesQuant = 7;
 
         String router=Paths.get("").toRealPath().toString()+"src/cine/storage";
@@ -45,6 +46,9 @@ public class Main {
         }
         
         // Pedimos los datos para la inicializacion
+        text= "- Ingrese cuantos usuarios hay en la fila";
+        usersQuant = Validate.valInt(text, 4, 1);
+
         text = "- Ingrese cuantos HORARIOS estaran disponibles por pelicula: ";
         showTimesQuant = Validate.valInt(text, 6, 4);
 
@@ -53,17 +57,18 @@ public class Main {
 
 
         // Instanciamos los arreglos
+        usersRow= new String[usersQuant];
         cinema = new int[moviesQuant][showTimesQuant][seatsQuant];
         revenue = new int[moviesQuant][(showTimesQuant+1)];
         losses = new int[moviesQuant];
         movieTimes = new String[showTimesQuant];
 
         // Inicializamos los arreglos
-        processMain.processIni(revenue, cinema, losses, movieTimes);
+        processMain.processIni(revenue, cinema, losses, movieTimes, usersRow);
         
 
         // Desarrollo
-        processMain.proccessData(movieTimes, cinema, revenue, losses, router);
+        processMain.proccessData(movieTimes, cinema, revenue, losses, router, usersRow);
         
 
         // Eliminamos las instancias

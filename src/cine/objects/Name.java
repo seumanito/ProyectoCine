@@ -13,6 +13,10 @@ public class Name{
         this.serialNumber=(serialNumber.isEmpty()) ? null : serialNumber;
     }
 
+    public String getSerial(){
+        return this.serialNumber;
+    }
+
     private void utilValName(String client){
         if (client.isEmpty()){
             throw new IllegalArgumentException(" El nombre del cliente no puede estar vacio. ");

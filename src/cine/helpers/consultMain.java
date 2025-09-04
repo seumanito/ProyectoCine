@@ -29,9 +29,11 @@ public class consultMain {
                 System.out.println("ERROR: No se pudo abrir el archivo");
                 return;
             }
-            Scanner useAverageArch=archive.getArchive(choice[1]);
-            Scanner useNameArch=archive.getArchive(choice[0]);
-           // index=consultData
+            Scanner useBillArc=storage.getArchive(choice[1]);
+            Scanner useNameArch=storage.getArchive(choice[0]);
+            index=consultData.consultIndexByData(useNameArch, data, index);
+            String foundBill=consultData.consultDataByIndex(useBillArc, index, 0);
+            //billDefault.setBill(Double.parseDouble(founBill));
         }
     }
 }
