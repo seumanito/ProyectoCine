@@ -1,9 +1,10 @@
 package cine;
 
 import cine.helpers.*;
-import cine.objects.ArchiveUtil;
+import cine.objects.*;
 import cine.process.processMain;
 import cine.validateItem.*;
+import cine.composablesData.storeMain;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -20,10 +21,11 @@ public class Main {
         int[] losses;
         String[] movieTimes;
         String[] usersRow;
+        int[] idRow;
         int showTimesQuant, seatsQuant, usersQuant;
         int moviesQuant = 7;
 
-        String router=Paths.get("").toRealPath().toString()+"src/cine/storage";
+        String router=Paths.get("").toRealPath().toString()+"/src/cine/storage/";
 
         try {
             storage= new ArchiveUtil(router);
@@ -46,8 +48,7 @@ public class Main {
         }
         
         // Pedimos los datos para la inicializacion
-        text= "- Ingrese cuantos usuarios hay en la fila";
-        usersQuant = Validate.valInt(text, 4, 1);
+        
 
         text = "- Ingrese cuantos HORARIOS estaran disponibles por pelicula: ";
         showTimesQuant = Validate.valInt(text, 6, 4);
@@ -55,21 +56,23 @@ public class Main {
         text = "- Ingrese cuantos asientos tiene cada sala: ";
         seatsQuant =  Validate.valInt(text, 20, 10);
 
-
+        text= "- Ingrese cuantos usuarios hay en la fila";
+        usersQuant = Validate.valInt(text, 4, 1);
         // Instanciamos los arreglos
         usersRow= new String[usersQuant];
+        idRow= new int[usersQuant];
         cinema = new int[moviesQuant][showTimesQuant][seatsQuant];
         revenue = new int[moviesQuant][(showTimesQuant+1)];
         losses = new int[moviesQuant];
         movieTimes = new String[showTimesQuant];
 
         // Inicializamos los arreglos
-        processMain.processIni(revenue, cinema, losses, movieTimes, usersRow);
+        processMain.processIni(revenue, cinema, losses, movieTimes, usersRow,idRow);
         
 
         // Desarrollo
-        processMain.proccessData(movieTimes, cinema, revenue, losses, router, usersRow);
-        
+        processMain.proccessData(movieTimes, cinema, revenue, losses, router, usersRow,idRow);
+        storeMain.store(storage,idRow,usersRow,cinema,revenue,losses);
 
         // Eliminamos las instancias
         cinema = null;
