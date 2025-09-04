@@ -17,6 +17,14 @@ public class Name{
         return this.serialNumber;
     }
 
+    public void setName(String client){
+        this.utilValName(client);
+    }
+
+    public String getName(){
+        return this.client;
+    }
+
     private void utilValName(String client){
         if (client.isEmpty()){
             throw new IllegalArgumentException(" El nombre del cliente no puede estar vacio. ");

@@ -4,12 +4,17 @@ public class Bill {
     private double bill;
     private String  serialNumber;
 
-    public Bill(double bill){
+    public Bill(double bill, String serialNumber){
         this.utilValBill(bill);
+        this.
     }
 
     public double getBill(){
         return this.bill;
+    }
+
+    public void setBill(double bill){
+        this.utilValBill(bill);
     }
 
     private void utilValBill(double bill){
