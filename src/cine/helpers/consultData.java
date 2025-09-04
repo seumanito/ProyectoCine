@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class consultData {
     
 
-    public static String optionSelect(String optionSelect){
+    public static String optionSelect(String optionSelect)throws IOException {
         String text="";
         Scanner enter=new Scanner(System.in);
 

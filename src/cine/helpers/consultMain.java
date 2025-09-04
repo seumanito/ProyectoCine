@@ -10,8 +10,14 @@ public class consultMain {
         String[] listDirectories;
         int[] index=new int[2];
 
-        if (storage.directoriesExist()) {
-            data=consultData.optionSelect(option);
+        if (storage.directoriesExist()) {3
+            try {
+                data=consultData.optionSelect(option);
+            } catch (IOException e) {
+                System.out.println("Error al Procesar la informacion: "+e.getMessage());
+                return;
+            }
+            
         }
         if (data==null) {
             System.out.println("Este dato no es valido, intente de nuevo");

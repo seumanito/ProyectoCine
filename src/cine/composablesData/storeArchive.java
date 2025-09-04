@@ -11,17 +11,19 @@ public class storeArchive {
 
     public static void storeName(String[]names, ArchiveUtil storage,boolean check){
         LocalDateTime actualDateTime = LocalDateTime.now();
-        String nameRoute=(!check)? "nameStore_"+actualDateTime+"_serial"+rand : "nameStore";
+        String safeDateTime = actualDateTime.toString().replace(":", "-").replace(".", "-");
+        String nameRoute=(!check)? "nameStore_"+safeDateTime+"_serial"+rand : "nameStore";
 
         String text="";
 
         if (names!=null) {
             for(int i=0;i<names.length;i++){
-                text=String.valueOf(names[i])+"/";
-                storage.setCreateArchive(text, nameRoute, false);
+                text+=String.valueOf(names[i]);
+                if (i<names.length-1) {
+                    text+="/";
+                }
             }
-            String lastText = names[names.length - 1];
-            storage.setCreateArchive(lastText, nameRoute, true); 
+            storage.setCreateArchive(text, nameRoute, true); 
 
         }   
         actualDateTime = null;
@@ -29,18 +31,19 @@ public class storeArchive {
 
     public static void storeId(int[]ids,ArchiveUtil storage,boolean check){
         LocalDateTime actualDateTime = LocalDateTime.now();
-        String nameRoute=(!check)? "idStore_"+actualDateTime+"_serial"+rand : "nameStore";
+        String safeDateTime = actualDateTime.toString().replace(":", "-").replace(".", "-");
+        String nameRoute=(!check)? "idStore_"+safeDateTime+"_serial"+rand : "nameStore";
 
         String text="";
 
         if (ids!=null) {
             for(int i=0;i<ids.length;i++){
-                text=String.valueOf(ids[i])+"/";
-                storage.setCreateArchive(text, nameRoute, false);
+                text+=String.valueOf(ids[i]);
+                if (i<ids.length-1) {
+                    text+="/";
+                }
             }
-            
-            String lastText = String.valueOf(ids[ids.length - 1]);
-            storage.setCreateArchive(lastText, nameRoute, true); 
+            storage.setCreateArchive(text, nameRoute, true); 
 
         }   
         actualDateTime = null;
@@ -58,8 +61,9 @@ public class storeArchive {
         int band, sum;
         double porcentaje;
         LocalDateTime actualDateTime = LocalDateTime.now();
+        String safeDateTime = actualDateTime.toString().replace(":", "-").replace(".", "-");
 
-        String routeName="showCase_"+actualDateTime+"_serial"+rand;
+        String routeName="showCase_"+safeDateTime+"_serial"+rand;
 
         text = "C.E.V.S = Cantidad de Entradas Vendidas por Horario. \nT.I.S.P = Total Ingresos por Horario y por pelicula.\nT.G.P.P = Total de Ganancias Potenciales Perdidas por pelicula.";
         storage.setCreateArchive(text, routeName, true);
@@ -77,8 +81,6 @@ public class storeArchive {
                             storage.setCreateArchive(text, routeName, true);
                             sum += cinemaMatrix[0][0].length - Validate.valUnsoldSeats2(cinemaMatrix, i, y);
                         }
-                        text="       ";
-                        storage.setCreateArchive(text, routeName, false);
                         band=1;
                     }else if (band==1){
                         for (int x = 0; x < revenue[0].length - 1; x++) {

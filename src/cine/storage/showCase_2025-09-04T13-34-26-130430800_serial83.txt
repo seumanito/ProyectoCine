@@ -1,0 +1,47 @@
+C.E.V.S = Cantidad de Entradas Vendidas por Horario. 
+T.I.S.P = Total Ingresos por Horario y por pelicula.
+T.G.P.P = Total de Ganancias Potenciales Perdidas por pelicula.
+|________________________|           ~ INFORME DE VENTAS DEL CINE (2025-09-04T13:34:26.130430800) ~          |_________________________|
+|        PELICULA        |            C.E.V.H            |              T.I.S.P             | T.G.P.P |   ESTATUS   |
+| Avatar                   
+  6   
+  0   
+  0   
+  0   
+  18$  00$  00$  00$ = 18$       68$    FRACASO
+| Top gun: Maverick        
+  0   
+  0   
+  0   
+  0   
+  00$  00$  00$  00$ = 00$       80$    FRACASO
+| Avengers: End Game       
+  0   
+  0   
+  0   
+  0   
+  00$  00$  00$  00$ = 00$       80$    FRACASO
+| Oppenheimer              
+  0   
+  0   
+  0   
+  0   
+  00$  00$  00$  00$ = 00$       80$    FRACASO
+| Titanic                  
+  0   
+  0   
+  0   
+  0   
+  00$  00$  00$  00$ = 00$       80$    FRACASO
+| Mission: Impossible      
+  0   
+  0   
+  0   
+  0   
+  00$  00$  00$  00$ = 00$       80$    FRACASO
+| Rapidos y Furiosos       
+  0   
+  0   
+  0   
+  0   
+  00$  00$  00$  00$ = 00$       80$    FRACASO
